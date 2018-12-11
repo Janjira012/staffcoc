@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var fs = require("fs");
 const body = require('body-parser')
-
+const PORT = process.env.PORT || 3000;
 
 app.use(body.json())
 
@@ -69,7 +69,7 @@ app.delete('/deleteUser/:index', function (req, res) {
     });
 });
 
-var server = app.listen(8081, function () {
+var server = app.listen(PORT, function () {
     var host = server.address().address
     var port = server.address().port
     console.log("Application Run At http://%s:%s", host, port);
