@@ -75,7 +75,7 @@ app.delete('/delUser/:index', function (req, res) {
                  });
                 // delete data.id;
                 
-                res.end(JSON.stringify(data));
+                res.end(JSON.stringify(users));
                 // fs.writeFileSync(__dirname + "/" + "db.json", JSON.stringify(json, null, data.id));
 
                 // json.users = users.filter((user) => { return user.username !== removeUser });
