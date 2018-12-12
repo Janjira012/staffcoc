@@ -61,8 +61,10 @@ app.delete('/delUser/:index', function (req, res) {
 
             var data = users["staffcoc"][i];
             if (data.id == req.params.index) {
-                console.log(data.staffName);
+                console.log(users.id);
                 users["staffcoc"].splice(i, 1); 
+                delete users.id;
+                res.end(JSON.stringify(users));
                 // var removeUser = "test2";
                 // var data = fs.readFileSync('results.json');
                 // var json = JSON.parse(data);
@@ -70,9 +72,6 @@ app.delete('/delUser/:index', function (req, res) {
                 users.user = user.filter((data) => { return data.id !== req.params.index });
                 fs.writeFile(__dirname + "/" + "db.json", JSON.stringify(users, null, 2), (err,data) => {
                         // console.log(data)
-                        delete users.id;
-                        res.end(data);
-                        // res.end(JSON.stringify(users));
                  });
                 // delete data.id;
                 
