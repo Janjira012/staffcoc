@@ -63,8 +63,7 @@ app.delete('/delUser/:index', function (req, res) {
             if (data.id == req.params.index) {
                 console.log(data.staffName);
                 users["staffcoc"].splice(i, 1); 
-                 
-                // delete data.id;
+                delete data.id;
                 // var removeUser = "test2";
                 // var data = fs.readFileSync('results.json');
                 // var json = JSON.parse(data);
