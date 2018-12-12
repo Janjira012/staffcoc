@@ -53,7 +53,7 @@ app.post('/addUser', function (req, res) {
     });
 });
 
-app.delete('/deleteUser/:index', function (req, res) {
+app.delete('/delUser/:index', function (req, res) {
     fs.readFile(__dirname + "/" + "db.json", 'UTF-8', function (err, data) {
         var users = JSON.parse(data);
         // console.log(users["staffcoc"]);
@@ -63,19 +63,30 @@ app.delete('/deleteUser/:index', function (req, res) {
             if (data.id == req.params.index) {
                 console.log(data.staffName);
                 users["staffcoc"].splice(i, 1);  
-                res.end(JSON.stringify(data));
-               
+                // delete data.id;
+                // var removeUser = "test2";
+                // var data = fs.readFileSync('results.json');
+                // var json = JSON.parse(data);
                 var user = users.staffcoc;
                 users.user = user.filter((data) => { return data.id !== req.params.index });
                 fs.writeFile(__dirname + "/" + "db.json", JSON.stringify(users, null, 2), (err,data) => {
                         // console.log(data)
                  });
-            
+                // delete data.id;
+                
+                
+                // fs.writeFileSync(__dirname + "/" + "db.json", JSON.stringify(json, null, data.id));
+
+                // json.users = users.filter((user) => { return user.username !== removeUser });
+                // fs.writeFileSync('results.json', JSON.stringify(json, null, 2));
+                // fs.writeFile(__dirname + "/" + "db.json", JSON.stringify(data.id), (err,data) => {
+                //     console.log(data)
+                // });
             }
             
         }
        
-
+        //res.end(JSON.stringify(user));
     });
 });
 
