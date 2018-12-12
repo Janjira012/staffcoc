@@ -7,9 +7,7 @@ const PORT = process.env.PORT || 3000;
 app.use(body.json())
 
 app.get('/getUser', function (req, res) {
-
     fs.readFile(__dirname + "/" + "db.json", 'UTF-8', function (err, data) {
-
         res.end(data);
     });
 });
@@ -55,16 +53,25 @@ app.post('/addUser', function (req, res) {
     });
 });
 
-app.delete('/deleteUser/:index', function (req, res) {
+app.delete('/delUser/:index', function (req, res) {
     fs.readFile(__dirname + "/" + "db.json", 'UTF-8', function (err, data) {
         var users = JSON.parse(data);
+        // console.log(users["staffcoc"]);
         for (i = 0; i < users["staffcoc"].length; i++) {
-            //var user = users["staffcoc"][i][req.params.id];
+
             var data = users["staffcoc"][i];
             if (data.id == req.params.index) {
+                console.log(data.id);                
+                delete data.id;
+                
                 res.end(JSON.stringify(data));
+                fs.writeFile(__dirname + "/" + "db.json", JSON.stringify(data.id), (err,data) => {
+                    console.log(data)
+                })
             }
+            
         }
+       
         //res.end(JSON.stringify(user));
     });
 });
