@@ -70,9 +70,8 @@ app.delete('/delUser/:index', function (req, res) {
                 users.user = user.filter((data) => { return data.id !== req.params.index });
                 fs.writeFile(__dirname + "/" + "db.json", JSON.stringify(users, null, 2), (err,data) => {
                         // console.log(data)
-                        
                         delete users.id;
-                        res.end(JSON.stringify(data));
+                        res.end(data);
                         // res.end(JSON.stringify(users));
                  });
                 // delete data.id;
